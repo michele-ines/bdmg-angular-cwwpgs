@@ -1,0 +1,138 @@
+<mat-card class="custom-card">
+  <mat-card-title>Location Form</mat-card-title>
+  <form [formGroup]="enderecoForm">
+    <div class="form-row">
+      <mat-form-field class="custom-mat-form-field" appearance="fill">
+        <mat-label>CEP</mat-label>
+        <input
+          matInput
+          mask="00000-000"
+          placeholder="00000-000"
+          formControlName="cep"
+        />
+        <mat-error *ngIf="enderecoForm.get('cep')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+        <mat-error *ngIf="enderecoForm.get('cep')?.hasError('minlength')"
+          >Mínimo de 9 caracteres obrigatórios.</mat-error
+        >
+        <mat-error *ngIf="enderecoForm.get('cep')?.hasError('maxlength')"
+          >Máximo 9 caracteres obrigatórios.</mat-error
+        >
+        <mat-hint align="start">Máximo 9 caracteres</mat-hint>
+        <mat-hint align="end"
+          >{{ enderecoForm.get('cep')?.value?.length || 0 }}/9</mat-hint
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="custom-mat-form-field">
+        <mat-label>Logradouro</mat-label>
+        <input matInput placeholder="Logradouro" formControlName="logradouro" />
+        <mat-error *ngIf="enderecoForm.get('logradouro')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="custom-mat-form-field">
+        <mat-label>Complemento</mat-label>
+        <input
+          matInput
+          mask="0.000"
+          placeholder="0.000"
+          formControlName="complemento"
+        />
+        <mat-error *ngIf="enderecoForm.get('complemento')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="custom-mat-form-field">
+        <mat-label>Bairro</mat-label>
+        <input matInput placeholder="Bairro" formControlName="bairro" />
+        <mat-error *ngIf="enderecoForm.get('bairro')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+        <mat-hint align="start">Máximo 20 caracteres</mat-hint>
+        <mat-hint align="end"
+          >{{ enderecoForm.get('bairro')?.value?.length || 0 }}/20</mat-hint
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="custom-mat-form-field">
+        <mat-label>Cidade</mat-label>
+        <input matInput placeholder="Cidade" formControlName="cidade" />
+        <mat-error *ngIf="enderecoForm.get('cidade')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+        <mat-error *ngIf="enderecoForm.get('cidade')?.hasError('minlength')"
+          >Mínimo de 4 caracteres obrigatórios.</mat-error
+        >
+        <mat-error *ngIf="enderecoForm.get('cidade')?.hasError('maxlength')"
+          >Máximo 20 caracteres obrigatórios.</mat-error
+        >
+        <mat-hint align="start">Máximo 20 caracteres</mat-hint>
+        <mat-hint align="end"
+          >{{ enderecoForm.get('cidade')?.value?.length || 0 }}/20</mat-hint
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="custom-mat-form-field">
+        <mat-label>Estado</mat-label>
+        <input
+          matInput
+          placeholder="Estado"
+          formControlName="state"
+          [matAutocomplete]="auto"
+        />
+        <mat-icon
+          matSuffix
+          *ngIf="enderecoForm.controls['state'].value"
+          (click)="clear('state')"
+          >clear</mat-icon
+        >
+        <mat-error *ngIf="enderecoForm.get('state')?.hasError('required')"
+          >Campo obrigatório</mat-error
+        >
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let suggestion of estadoSuggestions"
+            [value]="suggestion"
+            >{{ suggestion }}</mat-option
+          >
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="custom-mat-form-field">
+        <mat-label>IBGE</mat-label>
+        <input
+          matInput
+          placeholder="IBGE"
+          formControlName="ibge"
+          [attr.disabled]="isDisabled ? '' : null"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="custom-mat-form-field">
+        <mat-label>SIAFI</mat-label>
+        <input
+          matInput
+          placeholder="SIAFI"
+          formControlName="siafi"
+          [attr.disabled]="isDisabled ? '' : null"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <button mat-raised-button color="primary" (click)="salvar()">
+        Salvar
+      </button>
+    </div>
+  </form>
+</mat-card>

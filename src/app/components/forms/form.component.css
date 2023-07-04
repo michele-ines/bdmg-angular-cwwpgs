@@ -1,0 +1,39 @@
+.custom-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.custom-mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 20px;
+}
+
+::ng-deep.mat-pseudo-checkbox {
+  display: none !important;
+}
+
+mat-card-title {
+  display: flex;
+  justify-content: center;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 16px;
+}
+
+::ng-deep.mat-pseudo-checkbox {
+  display: none !important;
+}
